@@ -21,7 +21,7 @@
     <div class="nav-center d-none d-lg-flex">
       <a href="index.html">Accueil</a>
       <a href="index.html#experience">L’expérience</a>
-      <a href="index.html#programmes">Activités</a>
+      <a href="programme.html">Activités</a>
       <a href="benevole.html">Bénévolat</a>
     </div>
 
@@ -148,28 +148,29 @@
 
       <div class="col-lg-7 reveal delay-1">
         <div class="program-card">
-          <form>
+          <form action="https://formspree.io/f/mvzdjknw" method="POST">
+            <input type="hidden" name="_subject" value="Nouvelle demande d'inscription - Just For Youth">
             <h3 class="mb-4">Informations du parent</h3>
 
             <div class="row g-3">
               <div class="col-md-6">
                 <label class="form-label fw-bold">Nom complet du parent</label>
-                <input type="text" class="form-control" placeholder="Votre nom complet">
+                <input type="text" class="form-control" id="name_parent" name="name_parent" required placeholder="Votre nom complet">
               </div>
 
               <div class="col-md-6">
                 <label class="form-label fw-bold">Téléphone</label>
-                <input type="tel" class="form-control" placeholder="06 00 00 00 00">
+                <input type="tel" id="tel_parent" name="tel_parent" class="form-control" required placeholder="06 00 00 00 00">
               </div>
 
               <div class="col-md-6">
                 <label class="form-label fw-bold">Email</label>
-                <input type="email" class="form-control" placeholder="email@exemple.com">
+                <input type="email"  id="email" name="email" class="form-control" placeholder="email@exemple.com">
               </div>
 
               <div class="col-md-6">
                 <label class="form-label fw-bold">Lien avec l’enfant</label>
-                <select class="form-select">
+                <select class="form-select" id="lien_parental" name="lien_parental">
                   <option>Parent</option>
                   <option>Tuteur / tutrice</option>
                   <option>Autre</option>
@@ -184,17 +185,17 @@
             <div class="row g-3">
               <div class="col-md-6">
                 <label class="form-label fw-bold">Nom complet de l’enfant</label>
-                <input type="text" class="form-control" placeholder="Nom de l’enfant">
+                <input type="text" id="name_enfant" name="name_enfant" required class="form-control" placeholder="Nom de l’enfant">
               </div>
 
               <div class="col-md-6">
                 <label class="form-label fw-bold">Âge</label>
-                <input type="number" class="form-control" placeholder="Ex : 13">
+                <input type="number" name="age_enfant" required id="age_enfant" class="form-control" placeholder="Ex : 13">
               </div>
 
               <div class="col-md-6">
                 <label class="form-label fw-bold">Niveau scolaire</label>
-                <select class="form-select">
+                <select class="form-select" id="niveau_scolaire"  required name="niveau_scolaire">
                   <option>Collège</option>
                   <option>Lycée</option>
                   <option>Autre</option>
@@ -203,19 +204,19 @@
 
               <div class="col-md-6">
                 <label class="form-label fw-bold">Ville / quartier</label>
-                <input type="text" class="form-control" placeholder="Ex : Casablanca">
+                <input type="text" class="form-control"  name="ville" placeholder="Ex : Casablanca">
               </div>
 
             
 
               <div class="col-12">
                 <label class="form-label fw-bold">Message ou information complémentaire</label>
-                <textarea class="form-control" rows="5" placeholder="Parlez-nous brièvement de votre demande"></textarea>
+                <textarea class="form-control" rows="5" name="message" placeholder="Parlez-nous brièvement de votre demande"></textarea>
               </div>
 
               <div class="col-12">
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="autorisation">
+                  <input class="form-check-input" type="checkbox" id="autorisation" name="autorisation">
                   <label class="form-check-label" for="autorisation">
                     Je confirme que les informations fournies sont correctes et j’accepte d’être contacté(e) par l’association.
                   </label>
@@ -284,6 +285,29 @@
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  const form = document.querySelector("form");
 
+  form.addEventListener("submit", async function(e) {
+    e.preventDefault(); // empêche rechargement
+
+    const data = new FormData(form);
+
+    const response = await fetch(form.action, {
+      method: "POST",
+      body: data,
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+
+    if (response.ok) {
+      alert("Merci pour votre inscription ! Nous vous contacterons très bientôt.");
+      form.reset();
+    } else {
+      alert("Une erreur est survenue. Veuillez réessayer.");
+    }
+  });
+</script>
 </body>
 </html>

@@ -22,7 +22,7 @@
       <a href="index.html">Accueil</a>
       <a href="index.html#experience">L’expérience</a>
       <a href="programme.html">Activités</a>
-      <a href="#don">Faire un don</a>
+
     </div>
 
     <div class="nav-actions d-none d-lg-flex">
@@ -47,7 +47,7 @@
     <a href="index.html" class="mobile-link">Accueil</a>
     <a href="index.html#experience" class="mobile-link">L’expérience</a>
     <a href="index.html#programmes" class="mobile-link">Activités</a>
-    <a href="#don" class="mobile-link">Faire un don</a>
+
 
     <div class="mobile-actions">
       <a href="#benevole" class="btn btn-outline-nav w-100">Devenir bénévole</a>
@@ -75,7 +75,6 @@
 
         <div class="d-flex flex-wrap gap-3 mt-4">
           <a href="#formulaire" class="btn btn-main">Je deviens bénévole</a>
-          <a href="#don" class="btn btn-outline-custom">Faire un don</a>
         </div>
       </div>
 
@@ -90,7 +89,7 @@
 
           <div class="hero-card card-2">
             <strong>Soutenir</strong>
-            <span>Dons & mécénat</span>
+            <span>Dons & Bénévolat</span>
           </div>
 
           <img src='images/benevolat.png'
@@ -206,36 +205,36 @@
 
       <div class="col-lg-7 reveal delay-1">
         <div class="program-card">
-          <form>
+        
+            <form action="https://formspree.io/f/mvzdjknw" method="POST">
+              <input type="hidden" name="_subject" value="Nouvelle demande de benevolat - Just For Youth">
             <div class="row g-3">
               <div class="col-md-6">
                 <label class="form-label fw-bold">Nom complet</label>
-                <input type="text" class="form-control" placeholder="Votre nom">
+                <input type="text" name= "Nom complet" class="form-control" placeholder="Votre nom">
               </div>
 
               <div class="col-md-6">
                 <label class="form-label fw-bold">Téléphone</label>
-                <input type="tel" class="form-control" placeholder="06 00 00 00 00">
+                <input type="tel" name= "tel" class="form-control" placeholder="06 00 00 00 00">
               </div>
 
               <div class="col-md-6">
                 <label class="form-label fw-bold">Email</label>
-                <input type="email" class="form-control" placeholder="email@exemple.com">
+                <input type="email" name='email' class="form-control" placeholder="email@exemple.com">
               </div>
 
               <div class="col-md-6">
                 <label class="form-label fw-bold">Je souhaite</label>
-                <select class="form-select">
-                  <option>Devenir bénévole</option>
+                <select class="form-select" name="je souhaite">
                   <option>Donner des cours</option>
                   <option>Faire un don</option>
-                  <option>Inscrire mon enfant</option>
                 </select>
               </div>
 
               <div class="col-12">
                 <label class="form-label fw-bold">Message</label>
-                <textarea class="form-control" rows="5" placeholder="Votre message"></textarea>
+                <textarea name ='message' class="form-control" rows="5" placeholder="Votre message"></textarea>
               </div>
 
               <div class="col-12">
@@ -257,7 +256,7 @@
 
     <div class="d-flex justify-content-center gap-3 flex-wrap">
       <a href="#formulaire" class="btn btn-light rounded-pill px-5 py-3">Devenir bénévole</a>
-      <a href="#don" class="btn btn-outline-light rounded-pill px-5 py-3">Faire un don</a>
+
     </div>
   </div>
 </section>
@@ -273,8 +272,8 @@
       </div>
 
       <div class="col-md-6 text-md-end">
-        <p>Email : contact@justforyouth.ma</p>
-        <p>Téléphone : 06 00 00 00 00</p>
+        <p>Email : justforyouth.maroc@gmail.com /p>
+          <p>Téléphone : 06 65 10 46 12</p>
         <p>Casablanca, Maroc</p>
       </div>
     </div>
@@ -295,6 +294,30 @@
 
   window.addEventListener("scroll", revealOnScroll);
   window.addEventListener("load", revealOnScroll);
+</script>
+<script>
+  const form = document.querySelector("form");
+
+  form.addEventListener("submit", async function(e) {
+    e.preventDefault(); // empêche rechargement
+
+    const data = new FormData(form);
+
+    const response = await fetch(form.action, {
+      method: "POST",
+      body: data,
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+
+    if (response.ok) {
+      alert("Merci pour votre inscription ! Nous vous contacterons très bientôt.");
+      form.reset();
+    } else {
+      alert("Une erreur est survenue. Veuillez réessayer.");
+    }
+  });
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

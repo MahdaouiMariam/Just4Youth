@@ -18,10 +18,10 @@
   </div>
 
   <div class="offcanvas-body">
-    <a href="#experience" class="mobile-link" data-bs-dismiss="offcanvas">L’expérience</a>
-    <a href="#programmes" class="mobile-link" data-bs-dismiss="offcanvas">Programmes</a>
-    <a href="#actualites" class="mobile-link" data-bs-dismiss="offcanvas">Actualités</a>
-    <a href="#temoignages" class="mobile-link" data-bs-dismiss="offcanvas">Témoignages</a>
+    <a href="#experience" class="mobile-link" >L’expérience</a>
+    <a href="programme.html" class="mobile-link" >Programmes</a>
+    <a href="#actualites" class="mobile-link" >Actualités</a>
+    <a href="#temoignages" class="mobile-link" >Témoignages</a>
     <a href="apropos.html" class="mobile-link">À propos</a>
 
     <div class="mobile-actions">
@@ -239,7 +239,8 @@ Moussa et les filles de Chouaib: une histoire de foi, de courage et de rédempti
           <div class="info-card-img" style="height: 460px;"><img src="images/voyages_omra/OMRA.png" alt=""></div>
           <div class="info-card-body">
             <h3>Voyage Spirituel </h3>
-            <p>Lancement prochain d’un cycle d’ateliers pour collégiens et lycéens.</p>
+            <p> Un voyage spirituel (Omra) a été organisé pour les jeunes, leur offrant une expérience unique 
+              pour renforcer leur foi, leurs valeurs et leur attachement à leur identité.</p>
           </div>
         </div>
       </div>
@@ -356,6 +357,31 @@ Moussa et les filles de Chouaib: une histoire de foi, de courage et de rédempti
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  document.querySelectorAll('.mobile-link[href^="#"]').forEach(link => {
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
 
+      const targetId = this.getAttribute('href');
+      const target = document.querySelector(targetId);
+
+      const offcanvasElement = document.querySelector('#mobileMenu');
+      const offcanvas = bootstrap.Offcanvas.getInstance(offcanvasElement);
+
+      if (offcanvas) {
+        offcanvas.hide();
+      }
+
+      setTimeout(() => {
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      }, 300);
+    });
+  });
+</script>
 </body>
 </html>
